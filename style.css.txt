@@ -1,0 +1,16 @@
+.error-message {
+    color: red;
+    font-size: 0.875em;
+}
+
+input:invalid {
+    border-color: red;
+}
+
+input:valid {
+    border-color: green;
+}
+
+.form-group {
+    margin-bottom: 1em;
+}
