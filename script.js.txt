@@ -1,0 +1,51 @@
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
+    // Prevent form submission
+    event.preventDefault();
+    
+    // Validate Username
+    let username = document.getElementById('username').value;
+    if(username.length < 3) {
+        displayError('usernameError', 'Username must be at least 3 characters long');
+    } else {
+        removeError('usernameError');
+    }
+    
+    // Validate Email
+    let email = document.getElementById('email').value;
+    let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if(!emailPattern.test(email)) {
+        displayError('emailError', 'Please enter a valid email address');
+    } else {
+        removeError('emailError');
+    }
+    
+    // Validate Password
+    let password = document.getElementById('password').value;
+    if(password.length < 8) {
+        displayError('passwordError', 'Password must be at least 8 characters long');
+    } else {
+        removeError('passwordError');
+    }
+    
+    // Validate Confirm Password
+    let confirmPassword = document.getElementById('confirmPassword').value;
+    if(password !== confirmPassword) {
+        displayError('confirmPasswordError', 'Passwords do not match');
+    } else {
+        removeError('confirmPasswordError');
+    }
+    
+    // If no errors, submit the form
+    if(document.querySelectorAll('.error-message:empty').length === 4) {
+        alert('Form submitted successfully!');
+        // Form submission code here
+    }
+});
+
+function displayError(elementId, message) {
+    document.getElementById(elementId).innerText = message;
+}
+
+function removeError(elementId) {
+    document.getElementById(elementId).innerText = '';
+}
